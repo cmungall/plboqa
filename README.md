@@ -37,6 +37,11 @@ This is an implementation of Bauer et al's Ontology Bayesian Search algorithm fo
         year = {2012}
     }
 
+Original implementation:
+
+ * http://compbio.charite.de/contao/index.php/boqa.html
+
+
 The implementation is designed to be pluggable with respect to how
 underlying prolog data maps to the BN. However, at the moment there is
 only one plugin, rdfsboqa, which implements a simple RDF Schema map

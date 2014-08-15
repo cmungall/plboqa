@@ -1,0 +1,1408 @@
+@prefix :      <http://www.co-ode.org/ontologies/pizza/pizza.owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:AmericanHot  a           owl:Class ;
+        rdfs:label        "AmericanaPicante"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a               owl:Restriction ;
+                            owl:hasValue    :America ;
+                            owl:onProperty  :hasCountryOfOrigin
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PeperoniSausageTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :PeperoniSausageTopping :JalapenoPepperTopping :TomatoTopping :HotGreenPepperTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :HotGreenPepperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :JalapenoPepperTopping
+                          ] ;
+        owl:disjointWith  :Giardiniera , :FruttiDiMare , :UnclosedPizza , :Fiorentina , :Caprina , :FourSeasons , :Parmense , :Rosa , :Cajun , :American , :PrinceCarlo , :PolloAdAstra , :Mushroom , :SloppyGiuseppe , :Siciliana , :Margherita , :Napoletana , :Soho , :Veneziana , :LaReine , :QuattroFormaggi , :Capricciosa .
+
+:Siciliana  a             owl:Class ;
+        rdfs:label        "Siciliana"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :AnchoviesTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :HamTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GarlicTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :AnchoviesTopping :MozzarellaTopping :GarlicTopping :ArtichokeTopping :TomatoTopping :HamTopping :OliveTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :ArtichokeTopping
+                          ] ;
+        owl:disjointWith  :Soho , :Giardiniera , :PrinceCarlo , :AmericanHot , :Margherita , :FourSeasons , :Capricciosa , :Parmense , :UnclosedPizza , :Veneziana , :Rosa , :Mushroom , :American , :FruttiDiMare , :Fiorentina , :LaReine , :SloppyGiuseppe , :QuattroFormaggi , :Napoletana , :Cajun , :Caprina , :PolloAdAstra .
+
+:JalapenoPepperTopping
+        a                 owl:Class ;
+        rdfs:label        "CoberturaDeJalapeno"@pt ;
+        rdfs:subClassOf   :PepperTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Hot
+                          ] ;
+        owl:disjointWith  :GreenPepperTopping , :PeperonataTopping , :SweetPepperTopping .
+
+:LeekTopping  a           owl:Class ;
+        rdfs:label        "CoberturaDeLeek"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :SpinachTopping , :MushroomTopping , :PepperTopping , :GarlicTopping , :RocketTopping , :AsparagusTopping , :PetitPoisTopping , :OliveTopping , :OnionTopping , :ArtichokeTopping , :CaperTopping , :TomatoTopping .
+
+:hasTopping  a              owl:ObjectProperty , owl:InverseFunctionalProperty ;
+        rdfs:comment        "Note that hasTopping is inverse functional because isToppingOf is functional"@en ;
+        rdfs:domain         :Pizza ;
+        rdfs:range          :PizzaTopping ;
+        rdfs:subPropertyOf  :hasIngredient ;
+        owl:inverseOf       :isToppingOf .
+
+:PeperoniSausageTopping
+        a                 owl:Class ;
+        rdfs:label        "CoberturaDeCalabreza"@pt ;
+        rdfs:subClassOf   :MeatTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Medium
+                          ] ;
+        owl:disjointWith  :HotSpicedBeefTopping , :ChickenTopping , :HamTopping .
+
+_:b0    a                   owl:Restriction ;
+        owl:minCardinality  "3"^^xsd:nonNegativeInteger ;
+        owl:onProperty      :hasTopping .
+
+:HamTopping  a            owl:Class ;
+        rdfs:label        "CoberturaDePresunto"@pt ;
+        rdfs:subClassOf   :MeatTopping ;
+        owl:disjointWith  :HotSpicedBeefTopping , :ChickenTopping , :PeperoniSausageTopping .
+
+:FourCheesesTopping  a    owl:Class ;
+        rdfs:label        "CoberturaQuatroQueijos"@pt ;
+        rdfs:subClassOf   :CheeseTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :ParmesanTopping , :GoatsCheeseTopping , :MozzarellaTopping , :GorgonzolaTopping .
+
+:FruttiDiMare  a          owl:Class ;
+        rdfs:label        "FrutosDoMar"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GarlicTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MixedSeafoodTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :GarlicTopping :TomatoTopping :MixedSeafoodTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        owl:disjointWith  :Fiorentina , :Mushroom , :Capricciosa , :Margherita , :Caprina , :PrinceCarlo , :Parmense , :PolloAdAstra , :QuattroFormaggi , :Napoletana , :Soho , :SloppyGiuseppe , :Rosa , :LaReine , :Veneziana , :American , :UnclosedPizza , :Cajun , :AmericanHot , :Giardiniera , :Siciliana , :FourSeasons .
+
+:Hot    a                 owl:Class ;
+        rdfs:label        "Picante"@pt ;
+        rdfs:subClassOf   :Spiciness ;
+        owl:disjointWith  :Mild , :Medium .
+
+:GorgonzolaTopping  a     owl:Class ;
+        rdfs:label        "CoberturaDeGorgonzola"@pt ;
+        rdfs:subClassOf   :CheeseTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :GoatsCheeseTopping , :MozzarellaTopping , :ParmesanTopping , :FourCheesesTopping .
+
+:VegetarianPizzaEquivalent1
+        a                    owl:Class ;
+        rdfs:comment         "Any pizza that only has vegetarian toppings or no toppings is a VegetarianPizzaEquiv1. Should be inferred to be equivalent to VegetarianPizzaEquiv2.  Not equivalent to VegetarianPizza because PizzaTopping is not covering"@en ;
+        rdfs:label           "PizzaVegetarianaEquivalente1"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b1 )
+                             ] .
+
+:PrinceCarlo  a           owl:Class ;
+        rdfs:label        "CoberturaPrinceCarlo"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :ParmesanTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :LeekTopping :RosemaryTopping :MozzarellaTopping :TomatoTopping :ParmesanTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :RosemaryTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :LeekTopping
+                          ] ;
+        owl:disjointWith  :Caprina , :Fiorentina , :Napoletana , :SloppyGiuseppe , :Siciliana , :Parmense , :FruttiDiMare , :AmericanHot , :Veneziana , :American , :Margherita , :FourSeasons , :LaReine , :Soho , :Capricciosa , :QuattroFormaggi , :Mushroom , :Rosa , :Cajun , :PolloAdAstra , :UnclosedPizza , :Giardiniera .
+
+:France  a      owl:Thing , :Country .
+
+:QuattroFormaggi  a       owl:Class ;
+        rdfs:label        "QuatroQueijos"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :FourCheesesTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :FourCheesesTopping :TomatoTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        owl:disjointWith  :Siciliana , :LaReine , :Veneziana , :FruttiDiMare , :PolloAdAstra , :SloppyGiuseppe , :UnclosedPizza , :Giardiniera , :Capricciosa , :Cajun , :Caprina , :Margherita , :Rosa , :Napoletana , :AmericanHot , :Mushroom , :Fiorentina , :Soho , :American , :FourSeasons , :PrinceCarlo , :Parmense .
+
+:VegetableTopping  a      owl:Class ;
+        rdfs:label        "CoberturaDeVegetais"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        owl:disjointWith  :MeatTopping , :FishTopping , :NutTopping , :CheeseTopping , :HerbSpiceTopping , :SauceTopping , :FruitTopping .
+
+:RocketTopping  a         owl:Class ;
+        rdfs:label        "CoberturaRocket"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Medium
+                          ] ;
+        owl:disjointWith  :GarlicTopping , :SpinachTopping , :CaperTopping , :MushroomTopping , :TomatoTopping , :ArtichokeTopping , :PepperTopping , :LeekTopping , :OnionTopping , :PetitPoisTopping , :AsparagusTopping , :OliveTopping .
+
+:HerbSpiceTopping  a      owl:Class ;
+        rdfs:label        "CoberturaDeErvas"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        owl:disjointWith  :FishTopping , :CheeseTopping , :VegetableTopping , :SauceTopping , :FruitTopping , :MeatTopping , :NutTopping .
+
+:FourSeasons  a           owl:Class ;
+        rdfs:label        "QuatroQueijos"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :AnchoviesTopping :MozzarellaTopping :PeperoniSausageTopping :TomatoTopping :CaperTopping :OliveTopping :MushroomTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :AnchoviesTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :CaperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MushroomTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PeperoniSausageTopping
+                          ] ;
+        owl:disjointWith  :Parmense , :Cajun , :UnclosedPizza , :Fiorentina , :PolloAdAstra , :Giardiniera , :Margherita , :American , :Siciliana , :LaReine , :Veneziana , :Mushroom , :Rosa , :FruttiDiMare , :QuattroFormaggi , :Caprina , :PrinceCarlo , :Napoletana , :Soho , :Capricciosa , :SloppyGiuseppe , :AmericanHot .
+
+:NutTopping  a            owl:Class ;
+        rdfs:label        "CoberturaDeCastanha"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :FruitTopping , :VegetableTopping , :SauceTopping , :CheeseTopping , :MeatTopping , :FishTopping , :HerbSpiceTopping .
+
+:MozzarellaTopping  a     owl:Class ;
+        rdfs:label        "CoberturaDeMozzarella"@pt ;
+        rdfs:subClassOf   :CheeseTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        rdfs:subClassOf   [ a               owl:Restriction ;
+                            owl:hasValue    :Italy ;
+                            owl:onProperty  :hasCountryOfOrigin
+                          ] ;
+        owl:disjointWith  :GoatsCheeseTopping , :GorgonzolaTopping , :ParmesanTopping , :FourCheesesTopping .
+
+_:b2    a               owl:Restriction ;
+        owl:hasValue    :Italy ;
+        owl:onProperty  :hasCountryOfOrigin .
+
+<http://www.co-ode.org/ontologies/pizza/pizza.owl>
+        a                owl:Ontology ;
+        rdfs:comment     "An example ontology that contains all constructs required for the various versions of the Pizza Tutorial run by Manchester University (see http://www.co-ode.org/resources/tutorials/)"@en ;
+        owl:versionInfo  "v.1.4. Added Food class (used in domain/range of hasIngredient), Added several hasCountryOfOrigin restrictions on pizzas, Made hasTopping invers functional"@en , "version 1.5"^^xsd:string , "v.1.5. Removed protege.owl import and references. Made ontology URI date-independent"@en .
+
+:SpicyPizza  a               owl:Class ;
+        rdfs:comment         "Any pizza that has a spicy topping is a SpicyPizza"@en ;
+        rdfs:label           "PizzaTemperada"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b3 )
+                             ] .
+
+:DeepPanBase  a           owl:Class ;
+        rdfs:label        "BaseEspessa"@pt ;
+        rdfs:subClassOf   :PizzaBase ;
+        owl:disjointWith  :ThinAndCrispyBase .
+
+:Food   a                owl:Class ;
+        rdfs:subClassOf  :DomainConcept .
+
+:AnchoviesTopping  a      owl:Class ;
+        rdfs:label        "CoberturaDeAnchovies"@pt ;
+        rdfs:subClassOf   :FishTopping ;
+        owl:disjointWith  :MixedSeafoodTopping , :PrawnsTopping .
+
+:CaperTopping  a          owl:Class ;
+        rdfs:label        "CoberturaDeCaper"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :MushroomTopping , :ArtichokeTopping , :LeekTopping , :SpinachTopping , :GarlicTopping , :PetitPoisTopping , :TomatoTopping , :OliveTopping , :AsparagusTopping , :OnionTopping , :RocketTopping , :PepperTopping .
+
+:OnionTopping  a          owl:Class ;
+        rdfs:label        "CoberturaDeCebola"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Medium
+                          ] ;
+        owl:disjointWith  :PetitPoisTopping , :MushroomTopping , :RocketTopping , :ArtichokeTopping , :OliveTopping , :SpinachTopping , :PepperTopping , :LeekTopping , :CaperTopping , :GarlicTopping , :TomatoTopping , :AsparagusTopping .
+
+:FishTopping  a           owl:Class ;
+        rdfs:label        "CoberturaDePeixe"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :MeatTopping , :FruitTopping , :VegetableTopping , :NutTopping , :SauceTopping , :CheeseTopping , :HerbSpiceTopping .
+
+:CheeseyVegetableTopping
+        a                owl:Class ;
+        rdfs:comment     "This class will be inconsistent. This is because we have given it 2 disjoint parents, which means it could never have any members (as nothing can simultaneously be a CheeseTopping and a VegetableTopping). NB Called ProbeInconsistentTopping in the ProtegeOWL Tutorial."@en ;
+        rdfs:label       "CoberturaDeQueijoComVegetais"@pt ;
+        rdfs:subClassOf  :CheeseTopping , :VegetableTopping .
+
+:Parmense  a              owl:Class ;
+        rdfs:label        "Parmense"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :AsparagusTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :ParmesanTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :HamTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping :HamTopping :ParmesanTopping :AsparagusTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        owl:disjointWith  :Napoletana , :SloppyGiuseppe , :AmericanHot , :Rosa , :Caprina , :Siciliana , :QuattroFormaggi , :American , :PrinceCarlo , :FourSeasons , :LaReine , :FruttiDiMare , :UnclosedPizza , :Giardiniera , :Capricciosa , :Veneziana , :Margherita , :Mushroom , :Soho , :Fiorentina , :Cajun , :PolloAdAstra .
+
+:GoatsCheeseTopping  a    owl:Class ;
+        rdfs:label        "CoberturaDeQueijoDeCabra"@pt ;
+        rdfs:subClassOf   :CheeseTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :MozzarellaTopping , :GorgonzolaTopping , :FourCheesesTopping , :ParmesanTopping .
+
+_:b4    a                 owl:Class ;
+        owl:complementOf  [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MeatTopping
+                          ] .
+
+:isBaseOf  a                owl:ObjectProperty , owl:FunctionalProperty , owl:InverseFunctionalProperty ;
+        rdfs:domain         :PizzaBase ;
+        rdfs:range          :Pizza ;
+        rdfs:subPropertyOf  :isIngredientOf ;
+        owl:inverseOf       :hasBase .
+
+:ChickenTopping  a        owl:Class ;
+        rdfs:label        "CoberturaDeFrango"@pt ;
+        rdfs:subClassOf   :MeatTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :HotSpicedBeefTopping , :HamTopping , :PeperoniSausageTopping .
+
+:TomatoTopping  a         owl:Class ;
+        rdfs:label        "CoberturaDeTomate"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :LeekTopping , :RocketTopping , :OnionTopping , :AsparagusTopping , :SpinachTopping , :ArtichokeTopping , :CaperTopping , :MushroomTopping , :PepperTopping , :GarlicTopping , :OliveTopping , :PetitPoisTopping .
+
+:HotGreenPepperTopping
+        a                owl:Class ;
+        rdfs:label       "CoberturaDePimentaoVerdePicante"@pt ;
+        rdfs:subClassOf  :GreenPepperTopping ;
+        rdfs:subClassOf  [ a                   owl:Restriction ;
+                           owl:onProperty      :hasSpiciness ;
+                           owl:someValuesFrom  :Hot
+                         ] .
+
+:FruitTopping  a          owl:Class ;
+        rdfs:label        "CoberturaDeFrutas"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        owl:disjointWith  :SauceTopping , :HerbSpiceTopping , :FishTopping , :VegetableTopping , :NutTopping , :MeatTopping , :CheeseTopping .
+
+:VegetarianPizzaEquivalent2
+        a                    owl:Class ;
+        rdfs:comment         "An alternative to VegetarianPizzaEquiv1 that does not require a definition of VegetarianTopping. Perhaps more difficult to maintain. Not equivalent to VegetarianPizza"@en ;
+        rdfs:label           "PizzaVegetarianaEquivalente2"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b5 )
+                             ] .
+
+:Napoletana  a            owl:Class ;
+        rdfs:label        "Napoletana"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :CaperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :AnchoviesTopping :MozzarellaTopping :TomatoTopping :CaperTopping :OliveTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :AnchoviesTopping
+                          ] ;
+        rdfs:subClassOf   [ a               owl:Restriction ;
+                            owl:hasValue    :Italy ;
+                            owl:onProperty  :hasCountryOfOrigin
+                          ] ;
+        owl:disjointWith  :Fiorentina , :Parmense , :Capricciosa , :Veneziana , :Rosa , :Mushroom , :FruttiDiMare , :Caprina , :LaReine , :Margherita , :Cajun , :Giardiniera , :PrinceCarlo , :QuattroFormaggi , :American , :FourSeasons , :PolloAdAstra , :Siciliana , :AmericanHot , :Soho , :UnclosedPizza , :SloppyGiuseppe .
+
+_:b1    a                  owl:Restriction ;
+        owl:allValuesFrom  :VegetarianTopping ;
+        owl:onProperty     :hasTopping .
+
+:PizzaBase  a             owl:Class ;
+        rdfs:label        "BaseDaPizza"@pt ;
+        rdfs:subClassOf   :Food ;
+        owl:disjointWith  :IceCream , :PizzaTopping , :Pizza .
+
+:Capricciosa  a           owl:Class ;
+        rdfs:label        "Capricciosa"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :CaperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :AnchoviesTopping :MozzarellaTopping :TomatoTopping :PeperonataTopping :HamTopping :CaperTopping :OliveTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :AnchoviesTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PeperonataTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :HamTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        owl:disjointWith  :PolloAdAstra , :PrinceCarlo , :Napoletana , :Caprina , :Giardiniera , :Margherita , :Rosa , :Soho , :Mushroom , :Veneziana , :LaReine , :SloppyGiuseppe , :FourSeasons , :Siciliana , :American , :Parmense , :QuattroFormaggi , :UnclosedPizza , :Fiorentina , :FruttiDiMare , :Cajun , :AmericanHot .
+
+_:b6    a                   owl:Restriction ;
+        owl:onProperty      :hasTopping ;
+        owl:someValuesFrom  [ a                   owl:Class ;
+                              owl:intersectionOf  ( _:b7 :PizzaTopping )
+                            ] .
+
+:InterestingPizza  a         owl:Class ;
+        rdfs:comment         "Any pizza that has at least 3 toppings. Note that this is a cardinality constraint on the hasTopping property and NOT a qualified cardinality constraint (QCR). A QCR would specify from which class the members in this relationship must be. eg has at least 3 toppings from PizzaTopping. This is currently not supported in OWL."@en ;
+        rdfs:label           "PizzaInteressante"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( _:b0 :Pizza )
+                             ] .
+
+:isToppingOf  a             owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:comment        "Any given instance of topping should only be added to a single pizza (no cheap half-measures on our pizzas)"@en ;
+        rdfs:domain         :PizzaTopping ;
+        rdfs:range          :Pizza ;
+        rdfs:subPropertyOf  :isIngredientOf ;
+        owl:inverseOf       :hasTopping .
+
+:OliveTopping  a          owl:Class ;
+        rdfs:label        "CoberturaDeAzeitona"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :SpinachTopping , :TomatoTopping , :CaperTopping , :ArtichokeTopping , :OnionTopping , :PetitPoisTopping , :PepperTopping , :GarlicTopping , :LeekTopping , :MushroomTopping , :AsparagusTopping , :RocketTopping .
+
+:Rosa   a                 owl:Class ;
+        rdfs:label        "Rosa"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GorgonzolaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping :GorgonzolaTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        owl:disjointWith  :PrinceCarlo , :Fiorentina , :Veneziana , :Siciliana , :Capricciosa , :Mushroom , :Margherita , :Napoletana , :Caprina , :LaReine , :SloppyGiuseppe , :UnclosedPizza , :Parmense , :Soho , :FruttiDiMare , :PolloAdAstra , :American , :QuattroFormaggi , :Giardiniera , :FourSeasons , :AmericanHot , :Cajun .
+
+:Country  a                  owl:Class ;
+        rdfs:comment         "A class that is equivalent to the set of individuals that are described in the enumeration - ie Countries can only be either America, England, France, Germany or Italy and nothing else. Note that these individuals have been asserted to be allDifferent from each other."@en ;
+        rdfs:label           "Pais"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( _:b8 :DomainConcept )
+                             ] .
+
+:SauceTopping  a          owl:Class ;
+        rdfs:label        "CoberturaEmMolho"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        owl:disjointWith  :FruitTopping , :CheeseTopping , :NutTopping , :VegetableTopping , :HerbSpiceTopping , :FishTopping , :MeatTopping .
+
+[ a                    owl:AllDifferent ;
+  owl:distinctMembers  ( :America :Italy :Germany :France :England )
+] .
+
+:SloppyGiuseppe  a        owl:Class ;
+        rdfs:label        "SloppyGiuseppe"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :HotSpicedBeefTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GreenPepperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OnionTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :HotSpicedBeefTopping :MozzarellaTopping :TomatoTopping :OnionTopping :GreenPepperTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        owl:disjointWith  :FruttiDiMare , :Napoletana , :PrinceCarlo , :LaReine , :UnclosedPizza , :Siciliana , :Margherita , :Mushroom , :QuattroFormaggi , :Capricciosa , :Giardiniera , :Cajun , :Rosa , :Veneziana , :Caprina , :AmericanHot , :FourSeasons , :PolloAdAstra , :Parmense , :American , :Fiorentina , :Soho .
+
+:LaReine  a               owl:Class ;
+        rdfs:label        "LaReine"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :HamTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MushroomTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping :HamTopping :OliveTopping :MushroomTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        owl:disjointWith  :SloppyGiuseppe , :Rosa , :Cajun , :Giardiniera , :Margherita , :PrinceCarlo , :Fiorentina , :AmericanHot , :Mushroom , :FourSeasons , :Napoletana , :FruttiDiMare , :Capricciosa , :Siciliana , :Caprina , :Veneziana , :Parmense , :PolloAdAstra , :Soho , :UnclosedPizza , :QuattroFormaggi , :American .
+
+:Medium  a                owl:Class ;
+        rdfs:label        "Media"@pt ;
+        rdfs:subClassOf   :Spiciness ;
+        owl:disjointWith  :Hot , :Mild .
+
+:HotSpicedBeefTopping
+        a                 owl:Class ;
+        rdfs:label        "CoberturaDeBifePicante"@pt ;
+        rdfs:subClassOf   :MeatTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Hot
+                          ] ;
+        owl:disjointWith  :PeperoniSausageTopping , :HamTopping , :ChickenTopping .
+
+:Soho   a                 owl:Class ;
+        rdfs:label        "Soho"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GarlicTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :ParmesanTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :RocketTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :GarlicTopping :TomatoTopping :RocketTopping :OliveTopping :ParmesanTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        owl:disjointWith  :QuattroFormaggi , :UnclosedPizza , :AmericanHot , :Margherita , :Cajun , :PrinceCarlo , :Mushroom , :FourSeasons , :LaReine , :Giardiniera , :PolloAdAstra , :Fiorentina , :Rosa , :Napoletana , :Caprina , :American , :Veneziana , :Parmense , :Siciliana , :FruttiDiMare , :Capricciosa , :SloppyGiuseppe .
+
+_:b5    a                  owl:Restriction ;
+        owl:allValuesFrom  [ a            owl:Class ;
+                             owl:unionOf  ( :SauceTopping :CheeseTopping :VegetableTopping :FruitTopping :NutTopping :HerbSpiceTopping )
+                           ] ;
+        owl:onProperty     :hasTopping .
+
+:Pizza  a                 owl:Class ;
+        rdfs:label        "Pizza"@en ;
+        rdfs:subClassOf   :Food ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasBase ;
+                            owl:someValuesFrom  :PizzaBase
+                          ] ;
+        owl:disjointWith  :IceCream , :PizzaTopping , :PizzaBase .
+
+:American  a              owl:Class ;
+        rdfs:label        "Americana"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :PeperoniSausageTopping :TomatoTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a               owl:Restriction ;
+                            owl:hasValue    :America ;
+                            owl:onProperty  :hasCountryOfOrigin
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PeperoniSausageTopping
+                          ] ;
+        owl:disjointWith  :Margherita , :PolloAdAstra , :Rosa , :Caprina , :QuattroFormaggi , :Mushroom , :Napoletana , :Soho , :PrinceCarlo , :SloppyGiuseppe , :Capricciosa , :Giardiniera , :Parmense , :Cajun , :UnclosedPizza , :Fiorentina , :LaReine , :AmericanHot , :Siciliana , :FourSeasons , :Veneziana , :FruttiDiMare .
+
+:IceCream  a              owl:Class ;
+        rdfs:comment      "A class to demonstrate mistakes made with setting a property domain. The property hasTopping has a domain of Pizza. This means that the reasoner can infer that all individuals using the hasTopping property must be of type Pizza. Because of the restriction on this class, all members of IceCream must use the hasTopping property, and therefore must also be members of Pizza. However, Pizza and IceCream are disjoint, so this causes an inconsistency. If they were not disjoint, IceCream would be inferred to be a subclass of Pizza."@en ;
+        rdfs:label        "Sorvete"@pt ;
+        rdfs:subClassOf   :Food ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :FruitTopping
+                          ] ;
+        owl:disjointWith  :Pizza , :PizzaTopping , :PizzaBase .
+
+:ThinAndCrispyPizza  a       owl:Class ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b9 )
+                             ] .
+
+:ParmaHamTopping  a      owl:Class ;
+        rdfs:label       "CoberturaDePrezuntoParma"@pt ;
+        rdfs:subClassOf  :HamTopping ;
+        rdfs:subClassOf  [ a                   owl:Restriction ;
+                           owl:onProperty      :hasSpiciness ;
+                           owl:someValuesFrom  :Mild
+                         ] .
+
+:Mushroom  a              owl:Class ;
+        rdfs:label        "Cogumelo"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping :MushroomTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MushroomTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        owl:disjointWith  :Rosa , :American , :Veneziana , :Capricciosa , :FruttiDiMare , :LaReine , :SloppyGiuseppe , :Napoletana , :PrinceCarlo , :Giardiniera , :PolloAdAstra , :AmericanHot , :FourSeasons , :Siciliana , :Fiorentina , :UnclosedPizza , :Parmense , :Margherita , :QuattroFormaggi , :Cajun , :Caprina , :Soho .
+
+:ArtichokeTopping  a      owl:Class ;
+        rdfs:label        "CoberturaDeArtichoke"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :PepperTopping , :TomatoTopping , :OnionTopping , :CaperTopping , :RocketTopping , :GarlicTopping , :PetitPoisTopping , :AsparagusTopping , :LeekTopping , :OliveTopping , :MushroomTopping , :SpinachTopping .
+
+:DomainConcept  a         owl:Class ;
+        owl:disjointWith  :ValuePartition .
+
+:PolloAdAstra  a          owl:Class ;
+        rdfs:label        "PolloAdAstra"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :ChickenTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :CajunSpiceTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :RedOnionTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :ChickenTopping :MozzarellaTopping :GarlicTopping :TomatoTopping :RedOnionTopping :CajunSpiceTopping :SweetPepperTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GarlicTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :SweetPepperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        owl:disjointWith  :Mushroom , :LaReine , :Soho , :FourSeasons , :FruttiDiMare , :SloppyGiuseppe , :QuattroFormaggi , :Siciliana , :Caprina , :Napoletana , :PrinceCarlo , :Cajun , :UnclosedPizza , :Fiorentina , :Parmense , :Veneziana , :Margherita , :Capricciosa , :Rosa , :American , :Giardiniera , :AmericanHot .
+
+:AsparagusTopping  a      owl:Class ;
+        rdfs:label        "CoberturaDeAspargos"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :OnionTopping , :LeekTopping , :MushroomTopping , :RocketTopping , :ArtichokeTopping , :SpinachTopping , :CaperTopping , :TomatoTopping , :GarlicTopping , :PetitPoisTopping , :PepperTopping , :OliveTopping .
+
+:NamedPizza  a           owl:Class ;
+        rdfs:comment     "A pizza that can be found on a pizza menu"@en ;
+        rdfs:label       "PizzaComUmNome"@pt ;
+        rdfs:subClassOf  :Pizza .
+
+:Cajun  a                 owl:Class ;
+        rdfs:label        "Cajun"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :PrawnsTopping :TobascoPepperSauce :MozzarellaTopping :TomatoTopping :OnionTopping :PeperonataTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PeperonataTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PrawnsTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TobascoPepperSauce
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OnionTopping
+                          ] ;
+        owl:disjointWith  :UnclosedPizza , :FourSeasons , :Fiorentina , :LaReine , :AmericanHot , :Giardiniera , :QuattroFormaggi , :Veneziana , :American , :SloppyGiuseppe , :FruttiDiMare , :PolloAdAstra , :PrinceCarlo , :Parmense , :Margherita , :Napoletana , :Capricciosa , :Caprina , :Siciliana , :Soho , :Rosa , :Mushroom .
+
+_:b7    a                   owl:Restriction ;
+        owl:onProperty      :hasSpiciness ;
+        owl:someValuesFrom  :Hot .
+
+:America  a     owl:Thing , :Country .
+
+:MeatTopping  a           owl:Class ;
+        rdfs:label        "CoberturaDeCarne"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        owl:disjointWith  :FruitTopping , :SauceTopping , :FishTopping , :CheeseTopping , :NutTopping , :VegetableTopping , :HerbSpiceTopping .
+
+:VegetarianPizza  a          owl:Class ;
+        rdfs:comment         "Any pizza that does not have fish topping and does not have meat topping is a VegetarianPizza. Members of this class do not need to have any toppings at all."@en ;
+        rdfs:label           "PizzaVegetariana"@pt ;
+        owl:disjointWith     :NonVegetarianPizza ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b4 _:b10 )
+                             ] .
+
+_:b9    a                  owl:Restriction ;
+        owl:allValuesFrom  :ThinAndCrispyBase ;
+        owl:onProperty     :hasBase .
+
+:ThinAndCrispyBase  a     owl:Class ;
+        rdfs:label        "BaseFinaEQuebradica"@pt ;
+        rdfs:subClassOf   :PizzaBase ;
+        owl:disjointWith  :DeepPanBase .
+
+_:b3    a                   owl:Restriction ;
+        owl:onProperty      :hasTopping ;
+        owl:someValuesFrom  :SpicyTopping .
+
+:PineKernels  a          owl:Class ;
+        rdfs:label       "CoberturaPineKernels"@pt ;
+        rdfs:subClassOf  :NutTopping .
+
+:CheeseTopping  a         owl:Class ;
+        rdfs:label        "CoberturaDeQueijo"@pt ;
+        rdfs:subClassOf   :PizzaTopping ;
+        owl:disjointWith  :FruitTopping , :VegetableTopping , :FishTopping , :SauceTopping , :HerbSpiceTopping , :NutTopping , :MeatTopping .
+
+:Spiciness  a                owl:Class ;
+        rdfs:comment         "A ValuePartition that describes only values from Hot, Medium or Mild. NB Subclasses can themselves be divided up into further partitions."@en ;
+        rdfs:label           "Tempero"@pt ;
+        rdfs:subClassOf      :ValuePartition ;
+        owl:equivalentClass  [ a            owl:Class ;
+                               owl:unionOf  ( :Hot :Medium :Mild )
+                             ] .
+
+:Fiorentina  a            owl:Class ;
+        rdfs:label        "Fiorentina"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :GarlicTopping :TomatoTopping :SpinachTopping :OliveTopping :ParmesanTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :SpinachTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GarlicTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :ParmesanTopping
+                          ] ;
+        owl:disjointWith  :Rosa , :FourSeasons , :Caprina , :Cajun , :Mushroom , :UnclosedPizza , :SloppyGiuseppe , :Siciliana , :Giardiniera , :AmericanHot , :FruttiDiMare , :QuattroFormaggi , :Soho , :Napoletana , :PrinceCarlo , :LaReine , :Veneziana , :Parmense , :Margherita , :PolloAdAstra , :American , :Capricciosa .
+
+_:b10   a                 owl:Class ;
+        owl:complementOf  [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :FishTopping
+                          ] .
+
+:SultanaTopping  a       owl:Class ;
+        rdfs:label       "CoberturaSultana"@pt ;
+        rdfs:subClassOf  :FruitTopping ;
+        rdfs:subClassOf  [ a                   owl:Restriction ;
+                           owl:onProperty      :hasSpiciness ;
+                           owl:someValuesFrom  :Medium
+                         ] .
+
+:VegetarianTopping  a        owl:Class ;
+        rdfs:comment         "An example of a covering axiom. VegetarianTopping is equivalent to the union of all toppings in the given axiom. VegetarianToppings can only be Cheese or Vegetable or....etc."@en ;
+        rdfs:label           "CoberturaVegetariana"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :PizzaTopping _:b11 )
+                             ] .
+
+_:b12   a                   owl:Restriction ;
+        owl:onProperty      :hasTopping ;
+        owl:someValuesFrom  :CheeseTopping .
+
+:RosemaryTopping  a       owl:Class ;
+        rdfs:label        "CoberturaRosemary"@pt ;
+        rdfs:subClassOf   :HerbSpiceTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :CajunSpiceTopping .
+
+:Mild   a                 owl:Class ;
+        rdfs:label        "NaoPicante"@pt ;
+        rdfs:subClassOf   :Spiciness ;
+        owl:disjointWith  :Hot , :Medium .
+
+:PizzaTopping  a          owl:Class ;
+        rdfs:label        "CoberturaDaPizza"@pt ;
+        rdfs:subClassOf   :Food ;
+        owl:disjointWith  :IceCream , :PizzaBase , :Pizza .
+
+:England  a     owl:Thing , :Country .
+
+:hasBase  a                 owl:ObjectProperty , owl:FunctionalProperty , owl:InverseFunctionalProperty ;
+        rdfs:domain         :Pizza ;
+        rdfs:range          :PizzaBase ;
+        rdfs:subPropertyOf  :hasIngredient ;
+        owl:inverseOf       :isBaseOf .
+
+:hasIngredient  a      owl:ObjectProperty , owl:TransitiveProperty ;
+        rdfs:comment   "NB Transitive - the ingredients of ingredients are ingredients of the whole"@en ;
+        rdfs:domain    :Food ;
+        rdfs:range     :Food ;
+        owl:inverseOf  :isIngredientOf .
+
+:SlicedTomatoTopping  a   owl:Class ;
+        rdfs:label        "CoberturaDeTomateFatiado"@pt ;
+        rdfs:subClassOf   :TomatoTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :SundriedTomatoTopping .
+
+:Margherita  a            owl:Class ;
+        rdfs:label        "Margherita"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        owl:disjointWith  :Veneziana , :Rosa , :Soho , :FruttiDiMare , :UnclosedPizza , :QuattroFormaggi , :PolloAdAstra , :Caprina , :Cajun , :AmericanHot , :FourSeasons , :Napoletana , :Fiorentina , :LaReine , :PrinceCarlo , :SloppyGiuseppe , :Capricciosa , :Siciliana , :Mushroom , :Parmense , :American , :Giardiniera .
+
+:PetitPoisTopping  a      owl:Class ;
+        rdfs:label        "CoberturaPetitPois"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :PepperTopping , :LeekTopping , :ArtichokeTopping , :AsparagusTopping , :MushroomTopping , :CaperTopping , :RocketTopping , :SpinachTopping , :GarlicTopping , :TomatoTopping , :OnionTopping , :OliveTopping .
+
+:MeatyPizza  a               owl:Class ;
+        rdfs:comment         "Any pizza that has at least one meat topping"@en ;
+        rdfs:label           "PizzaDeCarne"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( _:b13 :Pizza )
+                             ] .
+
+:CajunSpiceTopping  a     owl:Class ;
+        rdfs:label        "CoberturaDeCajun"@pt ;
+        rdfs:subClassOf   :HerbSpiceTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Hot
+                          ] ;
+        owl:disjointWith  :RosemaryTopping .
+
+_:b13   a                   owl:Restriction ;
+        owl:onProperty      :hasTopping ;
+        owl:someValuesFrom  :MeatTopping .
+
+_:b11   a            owl:Class ;
+        owl:unionOf  ( :SauceTopping :CheeseTopping :VegetableTopping :FruitTopping :NutTopping :HerbSpiceTopping ) .
+
+:SweetPepperTopping  a    owl:Class ;
+        rdfs:label        "CoberturaDePimentaoDoce"@pt ;
+        rdfs:subClassOf   :PepperTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :GreenPepperTopping , :PeperonataTopping , :JalapenoPepperTopping .
+
+:SundriedTomatoTopping
+        a                 owl:Class ;
+        rdfs:label        "CoberturaDeTomateRessecadoAoSol"@pt ;
+        rdfs:subClassOf   :TomatoTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :SlicedTomatoTopping .
+
+:Caprina  a               owl:Class ;
+        rdfs:label        "Caprina"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping :SundriedTomatoTopping :GoatsCheeseTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :SundriedTomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :GoatsCheeseTopping
+                          ] ;
+        owl:disjointWith  :PrinceCarlo , :Margherita , :LaReine , :American , :Napoletana , :Rosa , :FourSeasons , :UnclosedPizza , :Siciliana , :Mushroom , :AmericanHot , :Fiorentina , :Giardiniera , :PolloAdAstra , :Capricciosa , :Cajun , :FruttiDiMare , :Parmense , :Soho , :Veneziana , :QuattroFormaggi , :SloppyGiuseppe .
+
+:GreenPepperTopping  a    owl:Class ;
+        rdfs:label        "CoberturaDePimentaoVerde"@pt ;
+        rdfs:subClassOf   :PepperTopping ;
+        owl:disjointWith  :SweetPepperTopping , :JalapenoPepperTopping , :PeperonataTopping .
+
+:UnclosedPizza  a         owl:Class ;
+        rdfs:comment      "An unclosed Pizza cannot be inferred to be either a VegetarianPizza or a NonVegetarianPizza, because it might have other toppings."^^xsd:string ;
+        rdfs:label        "PizzaAberta"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        owl:disjointWith  :AmericanHot , :American , :LaReine , :PrinceCarlo , :Mushroom , :QuattroFormaggi , :Caprina , :Napoletana , :FruttiDiMare , :Soho , :Margherita , :Cajun , :Fiorentina , :Parmense , :Veneziana , :SloppyGiuseppe , :PolloAdAstra , :FourSeasons , :Rosa , :Siciliana , :Giardiniera , :Capricciosa .
+
+:MixedSeafoodTopping  a   owl:Class ;
+        rdfs:label        "CoberturaDeFrutosDoMarMistos"@pt ;
+        rdfs:subClassOf   :FishTopping ;
+        owl:disjointWith  :AnchoviesTopping , :PrawnsTopping .
+
+_:b8    a          owl:Class ;
+        owl:oneOf  ( :America :Italy :Germany :France :England ) .
+
+:PepperTopping  a         owl:Class ;
+        rdfs:label        "CoberturaDePimentao"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        owl:disjointWith  :OnionTopping , :MushroomTopping , :CaperTopping , :AsparagusTopping , :LeekTopping , :OliveTopping , :GarlicTopping , :SpinachTopping , :PetitPoisTopping , :ArtichokeTopping , :RocketTopping , :TomatoTopping .
+
+:ValuePartition  a        owl:Class ;
+        rdfs:comment      "A ValuePartition is a pattern that describes a restricted set of classes from which a property can be associated. The parent class is used in restrictions, and the covering axiom means that only members of the subclasses may be used as values. The possible subclasses cannot be extended without updating the ValuePartition class."^^xsd:string ;
+        rdfs:label        "ValorDaParticao"@pt ;
+        owl:disjointWith  :DomainConcept .
+
+:TobascoPepperSauce  a   owl:Class ;
+        rdfs:label       "MolhoTobascoPepper"@pt ;
+        rdfs:subClassOf  :SauceTopping ;
+        rdfs:subClassOf  [ a                   owl:Restriction ;
+                           owl:onProperty      :hasSpiciness ;
+                           owl:someValuesFrom  :Hot
+                         ] .
+
+:CheeseyPizza  a             owl:Class ;
+        rdfs:comment         "Any pizza that has at least 1 cheese topping."@en ;
+        rdfs:label           "PizzaComQueijo"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b12 )
+                             ] .
+
+:hasSpiciness  a      owl:ObjectProperty , owl:FunctionalProperty ;
+        rdfs:comment  "A property created to be used with the ValuePartition - Spiciness."@en ;
+        rdfs:range    :Spiciness .
+
+:Italy  a       owl:Thing , :Country .
+
+_:b14   a                   owl:Restriction ;
+        owl:onProperty      :hasSpiciness ;
+        owl:someValuesFrom  :Hot .
+
+:GarlicTopping  a         owl:Class ;
+        rdfs:label        "CoberturaDeAlho"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Medium
+                          ] ;
+        owl:disjointWith  :PetitPoisTopping , :LeekTopping , :PepperTopping , :ArtichokeTopping , :SpinachTopping , :CaperTopping , :OliveTopping , :MushroomTopping , :OnionTopping , :AsparagusTopping , :TomatoTopping , :RocketTopping .
+
+:RedOnionTopping  a      owl:Class ;
+        rdfs:label       "CoberturaDeCebolaVermelha"@pt ;
+        rdfs:subClassOf  :OnionTopping .
+
+:NonVegetarianPizza  a       owl:Class ;
+        rdfs:comment         "Any Pizza that is not a VegetarianPizza"@en ;
+        rdfs:label           "PizzaNaoVegetariana"@pt ;
+        owl:disjointWith     :VegetarianPizza ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b15 )
+                             ] .
+
+:SpicyPizzaEquivalent
+        a                    owl:Class ;
+        rdfs:comment         "An alternative definition for the SpicyPizza which does away with needing a definition of SpicyTopping and uses a slightly more complicated restriction: Pizzas that have at least one topping that is both a PizzaTopping and has spiciness hot are members of this class."@en ;
+        rdfs:label           "PizzaTemperadaEquivalente"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b6 )
+                             ] .
+
+:Germany  a     owl:Thing , :Country .
+
+:isIngredientOf  a     owl:ObjectProperty , owl:TransitiveProperty ;
+        rdfs:comment   "The inverse property tree to hasIngredient - all subproperties and attributes of the properties should reflect those under hasIngredient."@en ;
+        rdfs:domain    :Food ;
+        rdfs:range     :Food ;
+        owl:inverseOf  :hasIngredient .
+
+:PrawnsTopping  a         owl:Class ;
+        rdfs:label        "CoberturaDeCamarao"@pt ;
+        rdfs:subClassOf   :FishTopping ;
+        owl:disjointWith  :MixedSeafoodTopping , :AnchoviesTopping .
+
+:Giardiniera  a           owl:Class ;
+        rdfs:label        "Giardiniera"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :LeekTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :SlicedTomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :LeekTopping :MozzarellaTopping :TomatoTopping :PetitPoisTopping :PeperonataTopping :OliveTopping :MushroomTopping :SlicedTomatoTopping )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MushroomTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PetitPoisTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PeperonataTopping
+                          ] ;
+        owl:disjointWith  :Rosa , :Mushroom , :UnclosedPizza , :AmericanHot , :Soho , :Fiorentina , :QuattroFormaggi , :Capricciosa , :Siciliana , :Veneziana , :Napoletana , :American , :Caprina , :Parmense , :FruttiDiMare , :Margherita , :Cajun , :SloppyGiuseppe , :FourSeasons , :PolloAdAstra , :LaReine , :PrinceCarlo .
+
+:PeperonataTopping  a     owl:Class ;
+        rdfs:label        "CoberturaPeperonata"@pt ;
+        rdfs:subClassOf   :PepperTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Medium
+                          ] ;
+        owl:disjointWith  :GreenPepperTopping , :JalapenoPepperTopping , :SweetPepperTopping .
+
+:Veneziana  a             owl:Class ;
+        rdfs:label        "Veneziana"@pt ;
+        rdfs:subClassOf   :NamedPizza ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :CaperTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :MozzarellaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :TomatoTopping
+                          ] ;
+        rdfs:subClassOf   [ a               owl:Restriction ;
+                            owl:hasValue    :Italy ;
+                            owl:onProperty  :hasCountryOfOrigin
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :PineKernels
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :SultanaTopping
+                          ] ;
+        rdfs:subClassOf   [ a                  owl:Restriction ;
+                            owl:allValuesFrom  [ a            owl:Class ;
+                                                 owl:unionOf  ( :MozzarellaTopping :TomatoTopping :SultanaTopping :OnionTopping :CaperTopping :OliveTopping :PineKernels )
+                                               ] ;
+                            owl:onProperty     :hasTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OliveTopping
+                          ] ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasTopping ;
+                            owl:someValuesFrom  :OnionTopping
+                          ] ;
+        owl:disjointWith  :Margherita , :Caprina , :Napoletana , :Parmense , :FruttiDiMare , :Fiorentina , :Cajun , :SloppyGiuseppe , :American , :QuattroFormaggi , :Mushroom , :AmericanHot , :FourSeasons , :PrinceCarlo , :PolloAdAstra , :LaReine , :Rosa , :UnclosedPizza , :Siciliana , :Capricciosa , :Soho , :Giardiniera .
+
+:SpicyTopping  a             owl:Class ;
+        rdfs:comment         "Any pizza topping that has spiciness Hot"@en ;
+        rdfs:label           "CoberturaTemperada"@pt ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( _:b14 :PizzaTopping )
+                             ] .
+
+:SpinachTopping  a        owl:Class ;
+        rdfs:label        "CoberturaDeEspinafre"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :AsparagusTopping , :PepperTopping , :TomatoTopping , :GarlicTopping , :PetitPoisTopping , :LeekTopping , :CaperTopping , :MushroomTopping , :RocketTopping , :ArtichokeTopping , :OnionTopping , :OliveTopping .
+
+:hasCountryOfOrigin  a  owl:ObjectProperty .
+
+_:b15   a                 owl:Class ;
+        owl:complementOf  :VegetarianPizza .
+
+:ParmesanTopping  a       owl:Class ;
+        rdfs:label        "CoberturaDeParmesao"@pt ;
+        rdfs:subClassOf   :CheeseTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :FourCheesesTopping , :GorgonzolaTopping , :MozzarellaTopping , :GoatsCheeseTopping .
+
+:MushroomTopping  a       owl:Class ;
+        rdfs:label        "CoberturaDeCogumelo"@pt ;
+        rdfs:subClassOf   :VegetableTopping ;
+        rdfs:subClassOf   [ a                   owl:Restriction ;
+                            owl:onProperty      :hasSpiciness ;
+                            owl:someValuesFrom  :Mild
+                          ] ;
+        owl:disjointWith  :CaperTopping , :OnionTopping , :ArtichokeTopping , :AsparagusTopping , :PepperTopping , :GarlicTopping , :TomatoTopping , :LeekTopping , :PetitPoisTopping , :RocketTopping , :OliveTopping , :SpinachTopping .
+
+:RealItalianPizza  a         owl:Class ;
+        rdfs:comment         "This defined class has conditions that are part of the definition: ie any Pizza that has the country of origin, Italy is a RealItalianPizza. It also has conditions that merely describe the members - that all RealItalianPizzas must only have ThinAndCrispy bases. In essence, all pizzas from Italy must have ThinAndCrispy bases."@en ;
+        rdfs:label           "PizzaItalianaReal"@pt ;
+        rdfs:subClassOf      [ a                  owl:Restriction ;
+                               owl:allValuesFrom  :ThinAndCrispyBase ;
+                               owl:onProperty     :hasBase
+                             ] ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( :Pizza _:b2 )
+                             ] .
