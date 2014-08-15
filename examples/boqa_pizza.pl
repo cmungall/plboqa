@@ -14,11 +14,11 @@
 
 % MAPPINGS
 
+boqa:item(X) :- pizza(X).
 pizza(X) :- rdfs_subclass_of(X,pizza:'Pizza').
 
 boqa:cls(X) :- rdf(X,rdf:type,owl:'Class').
 
-boqa:item(X) :- pizza(X).
 
 boqa:p_false_negative(_,0.01).
 boqa:p_false_positive(_,0.05).
